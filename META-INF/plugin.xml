@@ -1,0 +1,30 @@
+<idea-plugin version="2">
+    <name>Paste with Pastie</name>
+    <description>Plugin which allows you to share selected code fragment using pastie.org service.
+        It automatically detects language of selected fragment and then copies link to pastie.org to your clipboard.
+        Sent code is marked as private so anyone without link shouldn't be able to access it.
+    </description>
+    <version>0.1</version>
+    <vendor>SoftwareMill</vendor>
+    <idea-version since-build="8000"/>
+
+    <application-components>
+        <!-- Add your application components here -->
+    </application-components>
+
+    <project-components>
+        <!-- Add your project components here -->
+    </project-components>
+
+    <actions>
+        <action id="pl.tomaszdziurko.idea.pastieplugin.SendToPastieAction"
+                class="pl.tomaszdziurko.idea.pastieplugin.SendToPastieAction"
+                text="_Share with Pastie" description="Share selected code fragment with Pastie.org">
+            <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="PasteMultiple"/>
+        </action>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+    </extensions>
+</idea-plugin>
