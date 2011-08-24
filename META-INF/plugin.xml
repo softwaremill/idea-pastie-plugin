@@ -1,9 +1,16 @@
 <idea-plugin version="2">
-    <name>Paste with Pastie</name>
-    <description>Plugin which allows you to share selected code fragment using http://pastie.org service.
-        It automatically detects language of selected fragment and then copies link to Pastie.org to your clipboard.
-        Sent code is marked as private so anyone without link shouldn't be able to access it.
+    <name>Share with Pastie</name>
+    <description>
+        <![CDATA[
+            This plugin allows to share selected code fragment using http://pastie.org service.
+            It automatically detects language of selected fragment and then copies link to shared code into your clipboard.
+            Sent code is marked as private so it is not visible publicly, only through the link.
+            <br/><br/>
+            Currently most languages connected with Java/JavaEE development are supported. If you find any language missing,
+            please contact with author.
+        ]]>
     </description>
+
     <version>0.2</version>
     <vendor email="tdziurko@gmail.com" logo="http://softwaremill.pl/images/logo.png" url="https://github.com/softwaremill/idea-pastie-plugin/wiki">Tomasz Dziurko, SoftwareMill</vendor>
 
@@ -13,8 +20,10 @@
     <change-notes>
         <![CDATA[
         <p>
+            Version 0.2:
             <ul>
-                <li> 0.2 Added plugin project page, contact email, etc.</li>
+                <li>Added plugin project page, contact email, etc.</li>
+                <li>Renamed plugin to a more proper name</li>
             </ul>
         </p>
         ]]>
