@@ -1,0 +1,28 @@
+== Share with Pastie, IntelliJ IDEA plugin ==
+
+This plugin allows to share selected code fragment using http://pastie.org service.
+It automatically detects language of selected fragment and then copies link to shared code into your clipboard.
+Sent code is marked as private so it is not visible publicly, only through the link.
+
+Currently most languages connected with Java/JavaEE development are supported. If you find any language missing,
+please contact with author.
+
+Plugin can be downloaded from [http://plugins.intellij.net/plugin/?idea&id=6267 IDEA Plugin Repository]
+or simply using File -> Settings -> Plugins inside your favorite IDE.
+
+
+=== Change notes ===
+
+Version 0.3:
+
+* Added default shortcut Ctrl + Shift + P
+
+* Nicer wat to show messages to user with balloons.
+
+
+
+Version 0.2:
+
+* Added plugin project page, contact email, etc.
+
+* Renamed plugin to a more proper name<
