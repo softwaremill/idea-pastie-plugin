@@ -1,4 +1,4 @@
-package pl.tomaszdziurko.idea.pastieplugin;
+package pl.softwaremill.idea.pastieplugin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -29,6 +29,7 @@ public class LanguageMap {
         fileExtensionToLanguage.put("sh", LanguageEnum.BASH_SHELL);
         fileExtensionToLanguage.put("py", LanguageEnum.PYTHON);
         fileExtensionToLanguage.put("c", LanguageEnum.C_C_PLUS_PLUS);
+        fileExtensionToLanguage.put("cpp", LanguageEnum.C_C_PLUS_PLUS);
 
 
         //TODO add more file extensions mapped to correct languages
