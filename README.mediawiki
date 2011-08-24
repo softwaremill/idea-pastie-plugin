@@ -30,5 +30,6 @@ or simply using File -> Settings -> Plugins inside your favorite IDE.
 
 
 ''' Licence '''
+
 Licensed under the Apache2 license. [http://softwaremill.com Softwaremill 2010-2011].
 
