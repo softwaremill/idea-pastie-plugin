@@ -13,7 +13,7 @@ or simply using File -> Settings -> Plugins inside your favorite IDE.
 
 === Change notes ===
 
-Version 0.3:
+'''Version 0.3:'''
 
 * Added default shortcut Ctrl + Shift + P
 
@@ -21,8 +21,10 @@ Version 0.3:
 
 
 
-Version 0.2:
+'''Version 0.2:'''
 
 * Added plugin project page, contact email, etc.
 
-* Renamed plugin to a more proper name<
+* Renamed plugin to a more proper name
+
+
