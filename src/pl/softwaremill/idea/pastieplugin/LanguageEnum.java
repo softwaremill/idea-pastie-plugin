@@ -1,4 +1,4 @@
-package pl.tomaszdziurko.idea.pastieplugin;
+package pl.softwaremill.idea.pastieplugin;
 
 /**
  * Enum mapping language with id of dropdown specifying type of code highlights in http://pastie.org

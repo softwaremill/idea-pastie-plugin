@@ -1,19 +1,23 @@
-package pl.tomaszdziurko.idea.pastieplugin;
+package pl.softwaremill.idea.pastieplugin;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.DataKeys;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.ide.CopyPasteManager;
-import com.intellij.openapi.ui.Messages;
+import com.intellij.openapi.ui.MessageType;
+import com.intellij.openapi.ui.popup.Balloon;
+import com.intellij.openapi.ui.popup.JBPopupFactory;
 import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.openapi.wm.StatusBar;
+import com.intellij.openapi.wm.WindowManager;
+import com.intellij.ui.awt.RelativePoint;
 
 import java.awt.datatransfer.StringSelection;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
@@ -28,9 +32,9 @@ import java.util.regex.Pattern;
  */
 public class SendToPastieAction extends AnAction {
 
-    public static String PASTIE_BASE_URL = "http://pastie.org/private/";
-
-    private Pattern pattern = Pattern.compile("a href=\"http://pastie\\.org/\\d+?/wrap\\?key=(.+?)\">");
+    private static String PASTIE_BASE_URL = "http://pastie.org/private/";
+    private static Pattern pattern = Pattern.compile("a href=\"http://pastie\\.org/\\d+?/wrap\\?key=(.+?)\">");
+    private static LanguageMap LANGUAGE_MAP = new LanguageMap();
 
 
     @Override
@@ -40,21 +44,31 @@ public class SendToPastieAction extends AnAction {
         int languageDropdownId = getCorrectLanguageDropdownId(actionEvent);
 
         if (selection == null || selection.trim().length() == 0) {
-            Messages.showMessageDialog("There is nothing to share.", "Empty selection", Messages.getWarningIcon());
+            showBalloonPopup(actionEvent, "There is nothing to share.", MessageType.WARNING);
             return;
         }
+
         try {
             String pastedCodeFragmentUniqueKey = shareWithPastie(selection, languageDropdownId);
-            
+
             CopyPasteManager.getInstance().setContents(new StringSelection(PASTIE_BASE_URL + pastedCodeFragmentUniqueKey));
-            Messages.showMessageDialog("Code fragment was shared successfully. Url to pastie.org is in your clipboard", "Paste successful", Messages.getInformationIcon());
-        }
-        catch (Exception e) {
-            Messages.showMessageDialog(
-                    "Something went wrong and, exception name: " + e.getClass().getName() +"\n\n" +
-                    "Problem message: \n" + e.getMessage(), "Error", Messages.getErrorIcon());
+            showBalloonPopup(actionEvent, "Share with Pastie successful. <br/>Link is waiting in your clipboard.<br/>", MessageType.INFO);
+        } catch (Exception e) {
+
+            showBalloonPopup(actionEvent, "Something went wrong.<br/><br/>Problem description: " + e.getMessage() +
+                    "<br/><br/>Please try again and it problem persits, contact with author.", MessageType.ERROR);
             e.printStackTrace();
         }
+    }
+
+    private void showBalloonPopup(AnActionEvent actionEvent, String htmlText, MessageType messageType) {
+        StatusBar statusBar = WindowManager.getInstance().getStatusBar(DataKeys.PROJECT.getData(actionEvent.getDataContext()));
+
+        JBPopupFactory.getInstance()
+                .createHtmlTextBalloonBuilder(htmlText, messageType, null)
+                .setFadeoutTime(7500)
+                .createBalloon()
+                .show(RelativePoint.getCenterOf(statusBar.getComponent()), Balloon.Position.atRight);
     }
 
     private String extractSelectedText(AnActionEvent actionEvent) {
@@ -70,11 +84,9 @@ public class SendToPastieAction extends AnAction {
     }
 
     private int getCorrectLanguageDropdownId(AnActionEvent actionEvent) {
-         String fileExtension = extractFileExtension(actionEvent);
+        String fileExtension = extractFileExtension(actionEvent);
 
-         LanguageMap languageMap = new LanguageMap();
-
-         return languageMap.getLanguageDropdownIdFor(fileExtension);
+        return LANGUAGE_MAP.getLanguageDropdownIdFor(fileExtension);
     }
 
     private String shareWithPastie(String selection, int languageDropdownId) throws Exception {
@@ -84,7 +96,7 @@ public class SendToPastieAction extends AnAction {
 
         return pastedCodeUniqueKey;
     }
-    
+
 
     private String shareAndGetResponse(String selection, int languageDropdownId) throws IOException {
         URL url = new URL("http://pastie.org/pastes/create");
@@ -93,13 +105,14 @@ public class SendToPastieAction extends AnAction {
         conn.setDoOutput(true);
         OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
 
-        String data = "paste[parser_id]=" + languageDropdownId +"&paste[authorization]=burger&paste[restricted]=1&paste[body]=" + convertNewLineCharacters(selection);
+        String data = "paste[parser_id]=" + languageDropdownId + "&paste[authorization]=burger&paste[restricted]=1&paste[body]="
+                + URLEncoder.encode(selection, "UTF-8");;
         writer.write(data);
         writer.flush();
         writer.close();
 
         StringBuffer answer = loadResponse(conn);
-        
+
         return answer.toString();
     }
 
@@ -115,20 +128,15 @@ public class SendToPastieAction extends AnAction {
         return answer;
     }
 
-    private String convertNewLineCharacters(String text) throws UnsupportedEncodingException {
-        String encodedString = URLEncoder.encode(text, "UTF-8");
-        return encodedString;
-    }
-
     private String extractKeyFrom(String response) {
         Matcher matcher = pattern.matcher(response);
 
-        if(matcher.find()) {
+        if (matcher.find()) {
             String key = matcher.group(1);
             return key;
         }
 
-        throw new RuntimeException("Sorry, I wasn't able to extract url to pasted code fragment. Please contact with author of this plugin.");
+        throw new RuntimeException("Sorry. Plugin wasn't able to extract url to pasted code fragment.");
     }
 
 }
