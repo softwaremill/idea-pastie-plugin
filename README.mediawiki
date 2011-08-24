@@ -28,3 +28,7 @@ or simply using File -> Settings -> Plugins inside your favorite IDE.
 * Renamed plugin to a more proper name
 
 
+
+''' Licence '''
+Licensed under the Apache2 license. [http://softwaremill.com Softwaremill 2010-2011].
+
