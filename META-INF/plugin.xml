@@ -11,14 +11,21 @@
         ]]>
     </description>
 
-    <version>0.2</version>
-    <vendor email="tdziurko@gmail.com" logo="http://softwaremill.pl/images/logo.png" url="https://github.com/softwaremill/idea-pastie-plugin/wiki">Tomasz Dziurko, SoftwareMill</vendor>
+    <version>0.3</version>
+    <vendor email="tdziurko@gmail.com" url="http://softwaremill.com">SoftwareMill</vendor>
 
     <idea-version since-build="8000"/>
 
 
     <change-notes>
         <![CDATA[
+        <p>
+            Version 0.3:
+            <ul>
+                <li>Added default shortcut Ctrl + Shift + P</li>
+                <li>Nicer wat to show messages to user with balloons</li>
+            </ul>
+        </p>
         <p>
             Version 0.2:
             <ul>
@@ -35,10 +42,12 @@
     </project-components>
 
     <actions>
-        <action id="pl.tomaszdziurko.idea.pastieplugin.SendToPastieAction"
-                class="pl.tomaszdziurko.idea.pastieplugin.SendToPastieAction"
+        <action id="pl.softwaremill.idea.pastieplugin.SendToPastieAction"
+                class="pl.softwaremill.idea.pastieplugin.SendToPastieAction"
                 text="_Share with Pastie" description="Share selected code fragment with Pastie.org">
             <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="PasteMultiple"/>
+
+            <keyboard-shortcut first-keystroke="control shift P" keymap="$default"/>
         </action>
     </actions>
 
