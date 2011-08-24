@@ -45,9 +45,9 @@ public class SendToPastieAction extends AnAction {
         }
         try {
             String pastedCodeFragmentUniqueKey = shareWithPastie(selection, languageDropdownId);
-            Messages.showMessageDialog("Code fragment was shared successfully. Url to pastie.org is in your clipboard", "Paste successful", Messages.getInformationIcon());
-
+            
             CopyPasteManager.getInstance().setContents(new StringSelection(PASTIE_BASE_URL + pastedCodeFragmentUniqueKey));
+            Messages.showMessageDialog("Code fragment was shared successfully. Url to pastie.org is in your clipboard", "Paste successful", Messages.getInformationIcon());
         }
         catch (Exception e) {
             Messages.showMessageDialog(
