@@ -17,7 +17,7 @@ or simply using File -> Settings -> Plugins inside your favorite IDE.
 
 * Added default shortcut Ctrl + Shift + P
 
-* Nicer wat to show messages to user with balloons.
+* Nicer way to show messages to user with balloons.
 
 
 
