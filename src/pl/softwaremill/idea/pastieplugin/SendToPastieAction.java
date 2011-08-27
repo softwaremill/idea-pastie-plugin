@@ -33,7 +33,7 @@ import java.util.regex.Pattern;
 public class SendToPastieAction extends AnAction {
 
     private static String PASTIE_BASE_URL = "http://pastie.org/private/";
-    private static Pattern pattern = Pattern.compile("a href=\"http://pastie\\.org/\\d+?/wrap\\?key=(.+?)\">");
+    private static Pattern pattern = Pattern.compile("download\\?key=(.+?)\" ");
     private static LanguageMap LANGUAGE_MAP = new LanguageMap();
 
 
@@ -92,9 +92,8 @@ public class SendToPastieAction extends AnAction {
     private String shareWithPastie(String selection, int languageDropdownId) throws Exception {
 
         String response = shareAndGetResponse(selection, languageDropdownId);
-        String pastedCodeUniqueKey = extractKeyFrom(response);
 
-        return pastedCodeUniqueKey;
+        return extractKeyFrom(response);
     }
 
 
@@ -106,13 +105,14 @@ public class SendToPastieAction extends AnAction {
         OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
 
         String data = "paste[parser_id]=" + languageDropdownId + "&paste[authorization]=burger&paste[restricted]=1&paste[body]="
-                + URLEncoder.encode(selection, "UTF-8");;
+                + URLEncoder.encode(selection, "UTF-8");
         writer.write(data);
         writer.flush();
         writer.close();
 
         StringBuffer answer = loadResponse(conn);
 
+        System.out.println("answer = \n" + answer);
         return answer.toString();
     }
 
@@ -132,8 +132,7 @@ public class SendToPastieAction extends AnAction {
         Matcher matcher = pattern.matcher(response);
 
         if (matcher.find()) {
-            String key = matcher.group(1);
-            return key;
+            return matcher.group(1);
         }
 
         throw new RuntimeException("Sorry. Plugin wasn't able to extract url to pasted code fragment.");
