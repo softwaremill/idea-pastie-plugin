@@ -112,7 +112,6 @@ public class SendToPastieAction extends AnAction {
 
         StringBuffer answer = loadResponse(conn);
 
-        System.out.println("answer = \n" + answer);
         return answer.toString();
     }
 

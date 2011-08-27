@@ -46,8 +46,10 @@
                 class="pl.softwaremill.idea.pastieplugin.SendToPastieAction"
                 text="_Share with Pastie" description="Share selected code fragment with Pastie.org">
             <add-to-group group-id="EditorPopupMenu" anchor="after" relative-to-action="PasteMultiple"/>
+            <add-to-group group-id="ConsoleView.PopupMenu" anchor="after" relative-to-action="ConsoleView.Copy"/>
 
             <keyboard-shortcut first-keystroke="control shift P" keymap="$default"/>
+
         </action>
     </actions>
 
