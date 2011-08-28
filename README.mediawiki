@@ -13,6 +13,16 @@ or simply using File -> Settings -> Plugins inside your favorite IDE.
 
 === Change notes ===
 
+'''Version 0.4:'''
+
+* Fixed bug with occasionally non working pasting
+
+* Plugins now works also in console
+
+* Added history window with recent pasties and links
+
+
+
 '''Version 0.3:'''
 
 * Added default shortcut Ctrl + Shift + P

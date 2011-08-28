@@ -11,7 +11,7 @@
         ]]>
     </description>
 
-    <version>0.3</version>
+    <version>0.4</version>
     <vendor email="tdziurko@gmail.com" url="http://softwaremill.com">SoftwareMill</vendor>
 
     <idea-version since-build="8000"/>
@@ -19,6 +19,14 @@
 
     <change-notes>
         <![CDATA[
+        <p>
+            Version 0.4:
+            <ul>
+                <li>Fixed bug with occasionally non working pasting</li>
+                <li>Plugins now works also in console</li>
+                <li>Added history window with recent pasties and links</li>
+            </ul>
+        </p>
         <p>
             Version 0.3:
             <ul>
