@@ -39,6 +39,9 @@
     </application-components>
 
     <project-components>
+        <component>
+            <implementation-class>pl.softwaremill.idea.pastieplugin.history.PastieHistory</implementation-class>
+        </component>
     </project-components>
 
     <actions>
@@ -54,6 +57,5 @@
     </actions>
 
     <extensions defaultExtensionNs="com.intellij">
-        <!-- Add your extensions here -->
     </extensions>
 </idea-plugin>

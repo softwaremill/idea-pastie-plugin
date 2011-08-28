@@ -12,6 +12,7 @@ import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.openapi.wm.StatusBar;
 import com.intellij.openapi.wm.WindowManager;
 import com.intellij.ui.awt.RelativePoint;
+import pl.softwaremill.idea.pastieplugin.history.PastieHistory;
 
 import java.awt.datatransfer.StringSelection;
 import java.io.BufferedReader;
@@ -51,7 +52,12 @@ public class SendToPastieAction extends AnAction {
         try {
             String pastedCodeFragmentUniqueKey = shareWithPastie(selection, languageDropdownId);
 
-            CopyPasteManager.getInstance().setContents(new StringSelection(PASTIE_BASE_URL + pastedCodeFragmentUniqueKey));
+            String linkToPastie = PASTIE_BASE_URL + pastedCodeFragmentUniqueKey;
+            CopyPasteManager.getInstance().setContents(new StringSelection(linkToPastie));
+
+            PastieHistory pastieHistory = DataKeys.PROJECT.getData(actionEvent.getDataContext()).getComponent(PastieHistory.class);
+            pastieHistory.addItem(selection, linkToPastie);
+
             showBalloonPopup(actionEvent, "Share with Pastie successful. <br/>Link is waiting in your clipboard.<br/>", MessageType.INFO);
         } catch (Exception e) {
 
