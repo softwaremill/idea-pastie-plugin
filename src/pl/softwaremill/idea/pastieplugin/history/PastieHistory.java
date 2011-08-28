@@ -40,7 +40,6 @@ public class PastieHistory implements ProjectComponent {
         Content content = ContentFactory.SERVICE.getInstance().createContent(rootPanel, "", false);
 
         myToolWindow.getContentManager().addContent(content);
-
     }
 
     public void addItem(String codeFragment, String url) {
@@ -49,10 +48,6 @@ public class PastieHistory implements ProjectComponent {
 
     private String formatCodeFragment(String codeFragment) {
         return codeFragment.trim().replace("\n", " ").replaceAll("\t","").replaceAll("    ", "");
-    }
-
-    public HistoryPanel getHistoryPanel() {
-        return historyPanel;
     }
 
     public void projectOpened() {
