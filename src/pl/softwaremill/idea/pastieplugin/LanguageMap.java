@@ -16,6 +16,7 @@ public class LanguageMap {
 
         fileExtensionToLanguage.put("java", LanguageEnum.JAVA);
         fileExtensionToLanguage.put("js", LanguageEnum.JAVASCRIPT);
+        fileExtensionToLanguage.put("coffee", LanguageEnum.COFFESCRIPT);
         fileExtensionToLanguage.put("sql", LanguageEnum.SQL);
         fileExtensionToLanguage.put("scala", LanguageEnum.SCALA);
         fileExtensionToLanguage.put("html", LanguageEnum.HTML_XML);

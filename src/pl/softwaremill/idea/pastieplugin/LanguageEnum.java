@@ -18,6 +18,7 @@ public enum LanguageEnum {
     CSS(8),
     JAVA(9),
     JAVASCRIPT(10),
+    COFFESCRIPT(40),
     HTML_XML(11),
     HTML_ERB_RAILS(12),
     BASH_SHELL(13),
