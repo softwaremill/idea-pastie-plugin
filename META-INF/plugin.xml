@@ -11,7 +11,7 @@
         ]]>
     </description>
 
-    <version>0.4</version>
+    <version>1.0</version>
     <vendor email="tdziurko@gmail.com" url="http://softwaremill.com">SoftwareMill</vendor>
 
     <idea-version since-build="8000"/>
@@ -19,6 +19,13 @@
 
     <change-notes>
         <![CDATA[
+        <p>
+            Version 1.0:
+            <ul>
+                <li>Fixed bug with non working plugin after pastie.org changes</li>
+                <li>Added CoffeeScript support</li>
+            </ul>
+        </p>
         <p>
             Version 0.4:
             <ul>

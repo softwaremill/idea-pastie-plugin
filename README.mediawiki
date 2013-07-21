@@ -13,6 +13,13 @@ or simply using File -> Settings -> Plugins inside your favorite IDE.
 
 === Change notes ===
 
+'''Version 1.0:'''
+
+* Fixed bug with non working plugin after pastie.org changes
+
+* Added CoffeeScript support
+
+
 '''Version 0.4:'''
 
 * Fixed bug with occasionally non working pasting
