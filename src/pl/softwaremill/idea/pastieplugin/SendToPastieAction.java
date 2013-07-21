@@ -34,7 +34,7 @@ import java.util.regex.Pattern;
 public class SendToPastieAction extends AnAction {
 
     private static String PASTIE_BASE_URL = "http://pastie.org/private/";
-    private static Pattern pattern = Pattern.compile("download\\?key=(.+?)\" ");
+    private static Pattern pattern = Pattern.compile("download\\?key=(.+?)\"");
     private static LanguageMap LANGUAGE_MAP = new LanguageMap();
 
 
