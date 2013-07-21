@@ -104,7 +104,7 @@ public class SendToPastieAction extends AnAction {
 
 
     private String shareAndGetResponse(String selection, int languageDropdownId) throws IOException {
-        URL url = new URL("http://pastie.org/pastes/create");
+        URL url = new URL("http://pastie.org/pastes");
         URLConnection conn = url.openConnection();
         conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
         conn.setDoOutput(true);
